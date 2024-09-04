@@ -237,8 +237,8 @@ func (w *WriteToInfluxdb) Write(wc chan *Message) {
 
 func main() {
 	var filepath, influxdbDsn string
-	flag.StringVar(&filepath, "path", "/tmp/access.log", "日志文件路径")
-	flag.StringVar(&influxdbDsn, "dsn", "http://127.0.0.1:8086@liuziwang@123456@mydb@s", "influxdb dsn")
+	flag.StringVar(&filepath, "path", "", "日志文件路径")
+	flag.StringVar(&influxdbDsn, "dsn", "", "influxdb dsn")
 	r := &ReadFromFile{filePath: filepath}
 	w := &WriteToInfluxdb{influxdbDsn: influxdbDsn}
 

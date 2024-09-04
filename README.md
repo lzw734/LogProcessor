@@ -1,7 +1,22 @@
 # Log Processor
 ## 项目简介
 Log Processor是一个高效的日志流量监测和分析工具，旨在处理和分析来自web服务器的日志数据。通过 Grafana 与 InfluxDB 集成，实现日志数据的可视化展示，帮助用户直观地了解系统的运行情况和日志流量。
-**模块分类**
+
+## 安装
+**克隆仓库**<br>
+git clone https://github.com/lzw734/LogProcessor.git<br>
+**包管理**<br>
+go mod tidy<br>
+**配置**<br>
+在项目根目录下，你可以使用命令行参数来配置日志文件路径和 InfluxDB 连接信息：<br>
+-path：指定日志文件的路径。<br>
+-dsn：指定 InfluxDB 的连接信息。<br>
+**示例**<br>
+    ```
+  go run LogProcessor.go -path /var/log/nginx/access.log -dsn http://localhost:8086@username@password@dbname@s
+    ```
+
+## 模块分类
 1. 日志读取模块 (ReadFromFile)<br>
 功能：从指定的日志文件中读取数据行。使用 bufio 逐行读取日志文件内容，文件读取到末尾时，程序会定时等待新日志的写入。<br>
 关键点：文件读取操作会持续执行，并且使用通道 (channel) 将读取到的数据传递给后续的处理模块。
